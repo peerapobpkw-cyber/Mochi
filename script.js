@@ -1,23 +1,20 @@
-const button = document.getElementById("loveButton");
-const message = document.getElementById("message");
+const loveButton = document.getElementById("loveButton");
+const navHeart = document.getElementById("navHeart");
 
-button.addEventListener("click", () => {
-  message.classList.add("show");
-
-  for (let i = 0; i < 14; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.textContent = ["💗", "💕", "💖", "💓", "✨"][Math.floor(Math.random() * 5)];
-
-    heart.style.setProperty("--x", `${(Math.random() - 0.5) * 360}px`);
-    heart.style.setProperty("--y", `${-80 - Math.random() * 280}px`);
-    heart.style.left = `${48 + (Math.random() - 0.5) * 8}%`;
-    heart.style.top = `${58 + (Math.random() - 0.5) * 8}%`;
-    heart.style.animationDelay = `${Math.random() * 0.18}s`;
-
+function sendLove() {
+  for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart-pop";
+    heart.textContent = ["💗","💕","💖","♡","✨"][Math.floor(Math.random()*5)];
+    heart.style.left = `${45 + Math.random()*10}%`;
+    heart.style.top = `${58 + Math.random()*8}%`;
+    heart.style.setProperty("--x", `${(Math.random()-.5)*380}px`);
+    heart.style.animationDelay = `${Math.random()*.25}s`;
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 1700);
+    setTimeout(() => heart.remove(), 1600);
   }
-
-  setTimeout(() => message.classList.remove("show"), 2200);
-});
+  loveButton.textContent = "♡ Love sent!";
+  setTimeout(() => loveButton.textContent = "♡ Send Love", 1500);
+}
+loveButton.addEventListener("click", sendLove);
+navHeart.addEventListener("click", sendLove);
